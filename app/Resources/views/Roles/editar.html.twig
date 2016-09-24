@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    </head>
+    <body>
+        
+        <div id="header">
+            <img src="{{ asset('img/logo.png') }}" height="60"/>
+            <div class="welcome">Bienvenido: Jorge Flores</div>
+        </div>
+
+        <div id="menu">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Roles</a></li>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Salir</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+        
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+            {% block javascripts %}{% endblock %}
+            
+        </div>
+        <div id="footer">
+            Todos los Derechos Reservados 2015
+        </div>
+    </body>
+</html>
